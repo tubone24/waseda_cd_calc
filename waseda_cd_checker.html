@@ -1,0 +1,43 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>早稲田CD計算機</title>
+  <script>
+  function calc_cd(input_check_digit){
+    var input_cd = input_check_digit;
+    var split_cd = input_cd.split("");
+    var answer;
+    answer = 11-(split_cd[1]*2+split_cd[3]*3+split_cd[4]*4+split_cd[5]*5+split_cd[6]*6+split_cd[7]*7)%11
+    return answer;
+  }
+
+  function replace_sn(inputN){
+    var input_check_digit = inputN
+    after_cd = input_check_digit.replace("A","1");
+    after_cd = after_cd.replace("B","2");
+    after_cd = after_cd.replace("C", "3");
+    after_cd = after_cd.replace("D", "4");
+    after_cd = after_cd.replace("E", "5");
+    after_cd = after_cd.replace("F", "6");
+    return after_cd;
+  }
+
+  function go_answer(){
+    var input_check_digit = document.getElementById("input_check_digit").value;
+    var regex = /^[A-Z0-9]{8}$/;
+    if(!regex.test(input_check_digit)){
+      alert("学籍番号入れてね");
+      document.getElementById("input_check_digit").value = "";
+    }
+    document.getElementById("answer").value = calc_cd(replace_sn(input_check_digit));
+  }
+  </script>
+</head>
+<body>
+  学籍番号を入力してね 例:1A11A001<br>
+  <input id="input_check_digit" type="text" />
+  <input id="calc_cd" type="button" value="計算！" onClick="go_answer()"/><br>
+  答え<br>
+  <input id="answer" type="text" />
+</body>
+</html>

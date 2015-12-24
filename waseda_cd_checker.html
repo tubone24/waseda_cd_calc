@@ -3,7 +3,7 @@
   <meta charset="utf-8" />
   <title>早稲田CD計算機</title>
   <script>
-  function calc_cd(input_check_digit){
+  function calcCd(input_check_digit){
     var input_cd = input_check_digit;
     var split_cd = input_cd.split("");
     var answer;
@@ -11,7 +11,7 @@
     return answer;
   }
 
-  function replace_sn(inputN){
+  function replaceSn(inputN){
     var input_check_digit = inputN
     after_cd = input_check_digit.replace("A","1");
     after_cd = after_cd.replace("B","2");
@@ -22,21 +22,21 @@
     return after_cd;
   }
 
-  function go_answer(){
+  function goAnswer(){
     var input_check_digit = document.getElementById("input_check_digit").value;
     var regex = /^[A-Z0-9]{8}$/;
     if(!regex.test(input_check_digit)){
       alert("学籍番号入れてね");
       document.getElementById("input_check_digit").value = "";
     }
-    document.getElementById("answer").value = calc_cd(replace_sn(input_check_digit));
+    document.getElementById("answer").value = calcCd(replaceSn(input_check_digit));
   }
   </script>
 </head>
 <body>
   学籍番号を入力してね 例:1A11A001<br>
   <input id="input_check_digit" type="text" />
-  <input id="calc_cd" type="button" value="計算！" onClick="go_answer()"/><br>
+  <input id="calc_cd" type="button" value="計算！" onClick="goAnswer()"/><br>
   答え<br>
   <input id="answer" type="text" />
 </body>
